@@ -5,49 +5,24 @@ services:
     image:
       url: n8nio/n8n:latest
     plan: free
-    healthCheckPath: /healthz
     envVars:
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
-        fromDatabase:
-          name: n8n-db
-          property: host
-      - key: DB_POSTGRESDB_PORT
-        fromDatabase:
-          name: n8n-db
-          property: port
+        sync: false
       - key: DB_POSTGRESDB_DATABASE
-        fromDatabase:
-          name: n8n-db
-          property: database
+        sync: false
       - key: DB_POSTGRESDB_USER
-        fromDatabase:
-          name: n8n-db
-          property: user
+        sync: false
       - key: DB_POSTGRESDB_PASSWORD
-        fromDatabase:
-          name: n8n-db
-          property: password
+        sync: false
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
       - key: N8N_BASIC_AUTH_USER
         value: admin
       - key: N8N_BASIC_AUTH_PASSWORD
         generateValue: true
-      - key: N8N_HOST
-        value: "0.0.0.0"
-      - key: N8N_PORT
-        value: "5678"
       - key: N8N_PROTOCOL
         value: https
-      - key: WEBHOOK_URL
-        value: "https://n8n.onrender.com"
       - key: GENERIC_TIMEZONE
         value: Asia/Kolkata
-
-databases:
-  - name: n8n-db
-    plan: free
-    databaseName: n8n
-    user: n8n
