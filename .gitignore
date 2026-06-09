@@ -1,0 +1,4 @@
+opencode.json
+.opencode/
+*.log
+node_modules/
